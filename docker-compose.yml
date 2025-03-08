@@ -1,0 +1,28 @@
+
+services:
+  pycudainside:
+    build: ./llm
+    container_name: pycudainside
+    ports:
+      - "8000:8000"
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility 
+
+    ipc: host  # Equivalent to --ipc=host
+
+    ulimits:  # Equivalent to --ulimit memlock=-1 --ulimit stack=67108864
+      memlock: -1
+      stack: 67108864
+
+    dns:
+      - 8.8.8.8  # Google DNS primary
+      - 8.8.4.4  # Google DNS secondary

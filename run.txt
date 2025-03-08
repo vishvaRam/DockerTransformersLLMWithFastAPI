@@ -1,0 +1,20 @@
+
+  docker compose build
+
+  Run only this for API
+  docker compose up -d 
+
+  To watch the API 
+  docker compose logs -f
+
+  sudo docker compose run -it pycudainside
+
+  For Terminal
+  docker exec -it pycudainside /bin/bash
+
+  docker compose down
+
+  docker restart pycudainside
+
+  To clear Docker memory ( Delete all Docker images!!)
+  docker system prune
